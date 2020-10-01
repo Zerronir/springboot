@@ -9,4 +9,5 @@ Para usarlo hace falta tener instalado java sdk en el equipo, en mi caso he usad
 Hace falta tener instalado lo siguiente en resumen:
 - PostgreSQL, MongoDB o MySQL para poder operar con bases de datos
 - Java SDK
-- Drivers de conexión a la BBDD, en mi caso he usado jdbc para conectarme a mi base de datos de PostgreSQL 
+- Drivers de conexión a la BBDD, en mi caso he usado jdbc para conectarme a mi base de datos de PostgreSQL
+-  
