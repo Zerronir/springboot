@@ -27,7 +27,7 @@ public class PersonDataAccessService implements PersonDao{
 
         try{
             
-            jdbcTemplate.execute();
+            jdbcTemplate.execute(insertSQL);
             
         }catch (Exception e){
             throw new Exception(e);
