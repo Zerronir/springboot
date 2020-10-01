@@ -22,9 +22,13 @@ public class PersonDataAccessService implements PersonDao{
     public int insertPerson(UUID id, Person person) throws Exception {
 
         final String insertSQL = "INSERT INTO person (name) VALUES (?)";
+        
+        String name = person.getName();
 
         try{
-
+            
+            jdbcTemplate.execute();
+            
         }catch (Exception e){
             throw new Exception(e);
         }
