@@ -17,8 +17,8 @@ public class FakePersonDataAccessService implements PersonDao{
     // Metodo para agregar personas
     @Override
     public Person insertPerson(UUID id, Person person) throws Exception {
-        DB.add(new Person(id, person.getName()));
-        return new Person(id, person.getName());
+        DB.add(new Person(id, person.getName(), person.getDni()));
+        return new Person(id, person.getName(), person.getDni());
     }
 
     @Override
@@ -53,7 +53,7 @@ public class FakePersonDataAccessService implements PersonDao{
                         try {
 
                             // Si se ha encontrado la id del usuario se asigna el nuevo nombre que le vamos a pasar como parámetro
-                            DB.set(indexOfPerson, new Person(id, person.getName()));
+                            DB.set(indexOfPerson, new Person(id, person.getName(), person.getDni()));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

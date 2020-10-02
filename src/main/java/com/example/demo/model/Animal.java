@@ -32,5 +32,7 @@ public class Animal {
         return name;
     }
 
-
+    public String getOwnerDni()throws Exception{
+        return owner;
+    }
 }

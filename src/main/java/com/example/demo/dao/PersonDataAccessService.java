@@ -21,16 +21,17 @@ public class PersonDataAccessService implements PersonDao{
     @Override
     public Person insertPerson(UUID id, Person person) throws Exception {
 
-        final String insertSQL = "INSERT INTO person (id, name) VALUES (?, ?)";
+        final String insertSQL = "INSERT INTO person (id, name, dni) VALUES (?, ?, ?)";
         UUID newId = UUID.randomUUID();
         String name = person.getName();
+        String dni = person.getDni();
 
         try{
             // Ejecutamos el insert usando el método update de JdbcTemplate
-            jdbcTemplate.update(insertSQL, newId, name);
+            jdbcTemplate.update(insertSQL, newId, name, dni);
 
             // Cuando creamos el usuario devolvemos un objeto de tipo persona
-            return new Person(newId, name);
+            return new Person(newId, name, dni);
         }catch (Exception e){
             throw new Exception(e);
         }
@@ -47,12 +48,13 @@ public class PersonDataAccessService implements PersonDao{
              */
             UUID id = UUID.fromString(resultSet.getString("id"));
             String name = resultSet.getString("name");
+            String dni = resultSet.getString("dni");
 
             /*
              * Una vez tenemos todos los datos del result set creamos un nuevo objeto de tipo Person pasándole
              * las variables que acabamos de crear nosotros antes
              * */
-            return new Person(id, name);
+            return new Person(id, name, dni);
 
         }));
     }
@@ -105,7 +107,8 @@ public class PersonDataAccessService implements PersonDao{
                 (resultSet, i) -> {
                     UUID userId = UUID.fromString(resultSet.getString("id"));
                     String name = resultSet.getString("name");
-                    return new Person(userId, name);
+                    String dni = resultSet.getString("dni");
+                    return new Person(userId, name, dni);
                 }
         );
 
