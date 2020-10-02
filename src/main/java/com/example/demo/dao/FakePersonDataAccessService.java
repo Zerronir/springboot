@@ -16,9 +16,9 @@ public class FakePersonDataAccessService implements PersonDao{
 
     // Metodo para agregar personas
     @Override
-    public int insertPerson(UUID id, Person person) throws Exception {
+    public Person insertPerson(UUID id, Person person) throws Exception {
         DB.add(new Person(id, person.getName()));
-        return 1;
+        return new Person(id, person.getName());
     }
 
     @Override

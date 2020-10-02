@@ -19,21 +19,21 @@ public class PersonDataAccessService implements PersonDao{
     }
 
     @Override
-    public int insertPerson(UUID id, Person person) throws Exception {
+    public Person insertPerson(UUID id, Person person) throws Exception {
 
-        final String insertSQL = "INSERT INTO person (name) VALUES (?)";
-        
+        final String insertSQL = "INSERT INTO person (id, name) VALUES (?, ?)";
+        UUID newId = UUID.randomUUID();
         String name = person.getName();
 
         try{
-            
-            jdbcTemplate.execute(insertSQL);
-            
+            // Ejecutamos el insert usando el método update de JdbcTemplate
+            jdbcTemplate.update(insertSQL, newId, name);
+
+            // Cuando creamos el usuario devolvemos un objeto de tipo persona
+            return new Person(newId, name);
         }catch (Exception e){
             throw new Exception(e);
         }
-
-        return 0;
     }
 
     @Override
@@ -58,13 +58,41 @@ public class PersonDataAccessService implements PersonDao{
     }
 
     @Override
-    public int deletePersonById(UUID id) {
+    public int deletePersonById(UUID id) throws Exception {
 
-        return 0;
+        final String deleteSQL = "DELETE FROM person WHERE id = ?";
+
+        // Realizamos la consulta a través de un método de try/catch
+        try{
+            // Ejecutamos el método update de la clase JdbcTemplate para poder eliminar un usuario
+            jdbcTemplate.update(deleteSQL, id);
+
+            // Si se ha eliminado correctamente recibiremos un 1
+            return 1;
+        }catch (Exception e){
+            throw new Exception(e);
+        }
     }
 
     @Override
-    public int updatePersonById(UUID id, Person person) {
+    public int updatePersonById(UUID id, Person person) throws Exception {
+
+        // Creamos la consulta que llevaremos a la base de datos en una string donde ? será el parametro que pasaremos
+        final String updateSQL = "UPDATE person SET name = ? WHERE id = ?";
+
+        // Creamos una variable para almacenar el nombre del objeto persona que pasamos usando el método getName()
+        String name = person.getName();
+
+        try {
+
+            // Preparamos el statement usando la clase jdbctemplate para ello usando el método de update
+            jdbcTemplate.update(updateSQL, name, id);
+
+        }catch (Exception e){
+            throw new Exception("El usuario no se ha registrado por un error al introducir los datos, por favor, prueba de nuevo o contacta con un administrador");
+        }
+
+
         return 0;
     }
 

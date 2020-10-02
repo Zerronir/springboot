@@ -49,12 +49,12 @@ public class PersonController {
 
     // Eliminamos un usuario por su id
     @DeleteMapping(path = "{id}")
-    public void deletePersonById(@PathVariable("id") UUID id){
+    public void deletePersonById(@PathVariable("id") UUID id) throws Exception {
         personService.deletePerson(id);
     }
 
     @PutMapping(path = "{id}")
-    public void updatePersonById(@PathVariable("id") UUID id, @RequestBody Person newPerson){
+    public void updatePersonById(@PathVariable("id") UUID id, @RequestBody Person newPerson) throws Exception{
         personService.updatePerson(id, newPerson);
     }
 

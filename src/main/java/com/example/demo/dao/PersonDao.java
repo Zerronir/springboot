@@ -9,9 +9,9 @@ import java.util.UUID;
 public interface PersonDao {
 
     // Insertar personas
-    int insertPerson(UUID id, Person person) throws Exception;
+    Person insertPerson(UUID id, Person person) throws Exception;
 
-    default int insertPerson(Person person) throws Exception {
+    default Person insertPerson(Person person) throws Exception {
         UUID id = UUID.randomUUID();
         return insertPerson(id, person);
     }
@@ -19,9 +19,9 @@ public interface PersonDao {
     // Devolvemos los registros de personas
     List<Person> selectAllPeople();
 
-    int deletePersonById(UUID id);
+    int deletePersonById(UUID id) throws Exception;
 
-    int updatePersonById(UUID id, Person person);
+    int updatePersonById(UUID id, Person person) throws Exception;
 
 
     Optional<Person> selectPersonById(UUID id);

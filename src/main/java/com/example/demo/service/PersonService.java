@@ -33,11 +33,11 @@ public class PersonService {
         return personDao.selectPersonById(id);
     }
 
-    public int deletePerson(UUID id){
+    public int deletePerson(UUID id) throws Exception {
         return personDao.deletePersonById(id);
     }
 
-    public int updatePerson(UUID id, Person newPerson){
+    public int updatePerson(UUID id, Person newPerson) throws Exception {
         return personDao.updatePersonById(id, newPerson);
     }
 
