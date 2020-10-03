@@ -51,7 +51,7 @@ public class AnimalDataAccessService implements AnimalDao{
     @Override
     public List<AnimalData> getAllAnimals() throws Exception {
 
-        final String getAnimals = "SELECT an.id, an.name, ow.name FROM animal an LEFT JOIN ";
+        final String getAnimals = "SELECT an.id, an.name, ow.name FROM animal an LEFT JOIN person ow ON an.owner = ow.dni";
 
         return jdbcTemplate.query(getAnimals, (resultSet, i) -> {
             /**
@@ -63,9 +63,9 @@ public class AnimalDataAccessService implements AnimalDao{
              * ownerName => Nombre del dueño de la mascota
              *
              * */
-            UUID petId = UUID.fromString(resultSet.getString("id"));
-            String petName = resultSet.getString("name");
-            String ownerName = resultSet.getString("owner");
+            UUID petId = UUID.fromString(resultSet.getString(1));
+            String petName = resultSet.getString(2);
+            String ownerName = resultSet.getString(3);
 
             return new AnimalData(petId, petName, ownerName);
 
