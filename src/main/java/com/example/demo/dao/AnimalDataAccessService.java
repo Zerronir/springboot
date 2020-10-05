@@ -18,11 +18,15 @@ public class AnimalDataAccessService implements AnimalDao{
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    /*
+    /**
     *
     * El método de insert animal acepta un objeto de tipo animal
     * del que obtendremos los valores de nombre y dni del propietario
-    * entonces lo que haremos será crear un uuid para la mascota
+    * entonces lo que haremos será crear un uuid para la mascota.
+    *
+    * @params id --> Le pasamos una id para el animal
+    * @params animal --> pasamos un objeto de tipo Animal con sus características
+    * @params owner --> Pasamos una string con el nombre del owner de la mascota
     *
     * */
     @Override
@@ -58,9 +62,9 @@ public class AnimalDataAccessService implements AnimalDao{
              *
              * Creamos los datos que vamos a devolver al usuario en un json
              *
-             * petId => Id de la mascota
-             * petName => Animal de la mascota
-             * ownerName => Nombre del dueño de la mascota
+             * @params petId => Id de la mascota
+             * @params petName => Animal de la mascota
+             * @params ownerName => Nombre del dueño de la mascota
              *
              * */
             UUID petId = UUID.fromString(resultSet.getString(1));

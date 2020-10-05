@@ -112,7 +112,7 @@ public class PersonDataAccessService implements PersonDao{
                 }
         );
 
-        // Devolvemos un Optional que puede ser nulo donde le pasamos el objeto de tipo Person
+        // Devolvemos un Optional nulo donde le pasamos el objeto de tipo Person
         return Optional.ofNullable(person);
 
     }

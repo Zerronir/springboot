@@ -15,7 +15,7 @@ import java.util.List;
 public class AnimalController {
     private final AnimalService animalService;
 
-
+    // Controlador de la clase Animal
     @Autowired
     public AnimalController(AnimalService animalService) {
         this.animalService = animalService;
@@ -27,6 +27,7 @@ public class AnimalController {
         animalService.insertAnimal(animal, owner);
     }
 
+    // Método para listar todos los animales de la base de datos
     @GetMapping
     public List<AnimalData> getAllAnimals() throws Exception {
         return animalService.getAllAnimals();

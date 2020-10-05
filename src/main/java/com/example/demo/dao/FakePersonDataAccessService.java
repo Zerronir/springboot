@@ -46,7 +46,7 @@ public class FakePersonDataAccessService implements PersonDao{
                     int indexOfPerson = DB.indexOf(p);
 
                     if(indexOfPerson >= 0) {
-                        /*
+                        /**
                         * El objeto Person devuelve una Exception en caso de error con el método
                         * getName() y es por eso que tenemos que hacer un try/catch para poder ejecutarlo
                         * */
